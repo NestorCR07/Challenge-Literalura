@@ -1,6 +1,9 @@
 package com.cursosalura.literalura.model;
 
 import jakarta.persistence.*;
+import jakarta.transaction.TransactionScoped;
+
+import java.util.List;
 
 @Entity
 @Table(name="autores")
@@ -12,6 +15,8 @@ public class Autor {
     private String nombre;
     private String fechaDeNacimiento;
     private String fechaDeFallecimiento;
+    @OneToOne
+    private Libro libros;
 
     public Autor(){}
 
@@ -19,6 +24,13 @@ public class Autor {
         this.nombre = datosAutor.nombre();
         this.fechaDeNacimiento = datosAutor.fechaDeNacimiento();
         this.fechaDeFallecimiento = datosAutor.fechaDeFallecimiento();
+    }
+
+    public Autor(String nombre, String fechaDeNacimiento, String fechaDeFallecimiento) {
+        this.nombre = nombre;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.fechaDeFallecimiento = fechaDeFallecimiento;
+
     }
 
     public Long getId() {
@@ -51,5 +63,13 @@ public class Autor {
 
     public void setFechaDeFallecimiento(String fechaDeFallecimiento) {
         this.fechaDeFallecimiento = fechaDeFallecimiento;
+    }
+
+    public Libro getLibros() {
+        return libros;
+    }
+
+    public void setLibros(Libro libros) {
+        this.libros = libros;
     }
 }

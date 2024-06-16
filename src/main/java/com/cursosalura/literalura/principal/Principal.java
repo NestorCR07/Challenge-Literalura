@@ -1,5 +1,6 @@
 package com.cursosalura.literalura.principal;
 
+import com.cursosalura.literalura.model.Autor;
 import com.cursosalura.literalura.model.Datos;
 import com.cursosalura.literalura.model.DatosLibro;
 import com.cursosalura.literalura.model.Libro;
@@ -8,6 +9,7 @@ import com.cursosalura.literalura.service.ConsumoAPI;
 import com.cursosalura.literalura.service.ConvierteDatos;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
     private Scanner teclado = new Scanner(System.in);
@@ -73,7 +75,17 @@ public class Principal {
 
         if(libroBuscado.isPresent()){
             System.out.println("Libro Encontrado");
-            Libro libro = new Libro(libroBuscado.get());
+            DatosLibro datosLibro =  libroBuscado.get();
+            Libro libro = new Libro(datosLibro);
+
+            var autor = datosLibro.autor().stream().
+                    map(a -> new Autor(a.nombre(),a.fechaDeNacimiento(),a.fechaDeFallecimiento()))
+                    .toList();
+            if (!autor.isEmpty()) {
+                autor.get(0).setLibros(libro);
+                libro.setAutors(autor.get(0)); // Establece el primer autor de la lista
+            }
+
             repository.save(libro);
             System.out.println(libro);
 

@@ -19,6 +19,9 @@ public class Libro {
     private String autor;
     private String idiomas;
     private Double numeroDeDescargas;
+    @OneToOne(mappedBy = "libros", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Autor autors;
+
 
     public Libro(){}
 
@@ -70,6 +73,14 @@ public class Libro {
 
     public void setNumeroDeDescargas(Double numeroDeDescargas) {
         this.numeroDeDescargas = numeroDeDescargas;
+    }
+
+    public Autor getAutors() {
+        return autors;
+    }
+
+    public void setAutors(Autor autors) {
+        this.autors = autors;
     }
 
     @Override
