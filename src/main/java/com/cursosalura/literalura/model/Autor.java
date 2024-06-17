@@ -13,8 +13,8 @@ public class Autor {
     private Long Id;
     @Column(unique = true)
     private String nombre;
-    private String fechaDeNacimiento;
-    private String fechaDeFallecimiento;
+    private Long fechaDeNacimiento;
+    private Long fechaDeFallecimiento;
     @OneToOne
     private Libro libros;
 
@@ -26,7 +26,7 @@ public class Autor {
         this.fechaDeFallecimiento = datosAutor.fechaDeFallecimiento();
     }
 
-    public Autor(String nombre, String fechaDeNacimiento, String fechaDeFallecimiento) {
+    public Autor(String nombre, Long fechaDeNacimiento, Long fechaDeFallecimiento) {
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.fechaDeFallecimiento = fechaDeFallecimiento;
@@ -49,19 +49,19 @@ public class Autor {
         this.nombre = nombre;
     }
 
-    public String getFechaDeNacimiento() {
+    public Long getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(String fechaDeNacimiento) {
+    public void setFechaDeNacimiento(Long fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
-    public String getFechaDeFallecimiento() {
+    public Long getFechaDeFallecimiento() {
         return fechaDeFallecimiento;
     }
 
-    public void setFechaDeFallecimiento(String fechaDeFallecimiento) {
+    public void setFechaDeFallecimiento(Long fechaDeFallecimiento) {
         this.fechaDeFallecimiento = fechaDeFallecimiento;
     }
 
@@ -71,5 +71,16 @@ public class Autor {
 
     public void setLibros(Libro libros) {
         this.libros = libros;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor: \n\n" +
+                "Id: " + Id +
+                "\nNombre: " + nombre +
+                "\nFecha De Nacimiento: " + fechaDeNacimiento +
+                "\nFecha De Fallecimiento: " + fechaDeFallecimiento +
+                "\nLibros: " + libros.getTitulo() + "\n";
+
     }
 }

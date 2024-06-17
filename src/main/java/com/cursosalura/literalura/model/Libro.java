@@ -87,9 +87,9 @@ public class Libro {
     public String toString() {
         return "Libro: \n\n" +
                 "Id: " + Id +
-                "\ntitulo: " + titulo +
-                "\nautor: " + autor +
-                "\nidiomas: " + idiomas +
-                "\nnumeroDeDescargas: " + numeroDeDescargas + "\n";
+                "\nTitulo: " + titulo +
+                "\nAutor: " + autor +
+                "\nIdiomas: " + idiomas +
+                "\nNumero De Descargas: " + numeroDeDescargas + "\n";
     }
 }
